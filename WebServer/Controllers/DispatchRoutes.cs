@@ -87,6 +87,64 @@ public class DispatchRoutes : ControllerBase
         return new ComboTokenGranterHandler().Handle(req.app_id, req.channel_id, req.data!, req.device!, req.sign!);
     }
 
+    [HttpPost("/hkrpg_global/mdk/shield/api/actionTicket")]
+    [HttpPost("/hkrpg_cn/mdk/shield/api/actionTicket")]
+    public ContentResult ActionTicket()
+    {
+        return new ContentResult
+        {
+            Content = "{\"retcode\":0,\"message\":\"OK\",\"data\":{\"ticket\":\"dummy_ticket\",\"is_verified\":true}}",
+            ContentType = "application/json"
+        };
+    }
+
+    [HttpPost("/hkrpg_global/mdk/shield/api/loginByAuthTicket")]
+    [HttpPost("/hkrpg_cn/mdk/shield/api/loginByAuthTicket")]
+    public JsonResult LoginByAuthTicket([FromBody] VerifyReqJson req)
+    {
+        return new TokenLoginHandler().Handle(req.uid!, req.token!);
+    }
+
+    [HttpPost("/hkrpg_global/mdk/shield/api/loginByThirdparty")]
+    [HttpPost("/hkrpg_cn/mdk/shield/api/loginByThirdparty")]
+    public JsonResult LoginByThirdparty([FromBody] LoginReqJson req)
+    {
+        return new UsernameLoginHandler().Handle(req.account!, req.password ?? "", req.is_crypto);
+    }
+
+    [HttpPost("/hkrpg_global/combo/granter/login/beforeVerify")]
+    [HttpPost("/hkrpg_cn/combo/granter/login/beforeVerify")]
+    public ContentResult BeforeVerify()
+    {
+        return new ContentResult
+        {
+            Content = "{\"retcode\":0,\"message\":\"OK\",\"data\":{\"is_heartbeat_required\":false,\"is_realname_required\":false,\"is_guardian_required\":false}}",
+            ContentType = "application/json"
+        };
+    }
+
+    [HttpGet("/hkrpg_global/combo/granter/api/getDynamicClientConfig")]
+    [HttpGet("/hkrpg_cn/combo/granter/api/getDynamicClientConfig")]
+    public ContentResult GetDynamicClientConfig()
+    {
+        return new ContentResult
+        {
+            Content = "{\"retcode\":0,\"message\":\"OK\",\"data\":{\"config\":{}}}",
+            ContentType = "application/json"
+        };
+    }
+
+    [HttpPost("/hkrpg_global/combo/guard/api/ping")]
+    [HttpPost("/hkrpg_cn/combo/guard/api/ping")]
+    public ContentResult GuardPing()
+    {
+        return new ContentResult
+        {
+            Content = "{\"retcode\":0,\"message\":\"OK\",\"data\":{}}",
+            ContentType = "application/json"
+        };
+    }
+
     [HttpGet("/hkrpg_global/combo/granter/api/getConfig")]
     [HttpGet("/hkrpg_cn/combo/granter/api/getConfig")]
     public ContentResult GetConfig()
