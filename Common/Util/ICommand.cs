@@ -48,7 +48,8 @@ namespace EggLink.DanhengServer.Util
             if (Console.GetCursorPosition().Left > 0)
                 Console.SetCursorPosition(0, Console.CursorTop);
 
-            Console.Write(input + new string(' ', Console.BufferWidth - length));
+            var padding = Console.BufferWidth - length;
+            Console.Write(input + (padding > 0 ? new string(' ', padding) : ""));
 
             Console.SetCursorPosition(length, Console.CursorTop);
             CursorIndex = length - GetWidth(PrefixContent);
