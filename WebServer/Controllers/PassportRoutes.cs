@@ -16,7 +16,9 @@ public class PassportRoutes : ControllerBase
     // === MA-CN-PASSPORT ===
 
     [HttpPost("/account/ma-cn-passport/api/appLoginByPassword")]
+    [HttpPost("/account/ma-cn-passport/app/loginByPassword")]
     [HttpPost("/hkrpg_cn/account/ma-cn-passport/api/appLoginByPassword")]
+    [HttpPost("/hkrpg_cn/account/ma-cn-passport/app/loginByPassword")]
     public JsonResult CnPassportLogin([FromBody] NewLoginReqJson req)
     {
         Logger.Info("Client request: ma-cn-passport login");
@@ -79,6 +81,17 @@ public class PassportRoutes : ControllerBase
         return new ContentResult
         {
             Content = "{\"retcode\":0,\"message\":\"OK\",\"data\":{\"cross_login_token\":\"dummy_cross_token\"}}",
+            ContentType = "application/json"
+        };
+    }
+
+    [HttpPost("/account/ma-cn-session/app/getTokenByGameToken")]
+    public ContentResult GetTokenByGameToken()
+    {
+        var token = Guid.NewGuid().ToString();
+        return new ContentResult
+        {
+            Content = $"{{\"retcode\":0,\"message\":\"OK\",\"data\":{{\"token\":{{\"token\":\"{token}\",\"token_type\":1}},\"user_info\":{{\"aid\":\"\",\"mid\":\"\",\"account_name\":\"\",\"email\":\"\",\"is_email_verify\":0,\"area_code\":\"\",\"country\":\"\",\"identity_code\":\"\",\"realname\":\"\",\"mobile\":\"\",\"safe_area_code\":\"\",\"safe_mobile\":\"\",\"rebind_area_code\":\"\",\"rebind_mobile\":\"\",\"rebind_mobile_time\":\"\",\"links\":[]}}}}}}",
             ContentType = "application/json"
         };
     }
