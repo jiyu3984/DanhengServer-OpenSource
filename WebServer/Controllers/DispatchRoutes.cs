@@ -60,30 +60,35 @@ public class DispatchRoutes
 
     // === AUTHENTICATION ===
     [HttpPost("/hkrpg_global/mdk/shield/api/login")]
+    [HttpPost("/hkrpg_cn/mdk/shield/api/login")]
     public JsonResult Login([FromBody] LoginReqJson req)
     {
         return new UsernameLoginHandler().Handle(req.account!, req.password!, req.is_crypto);
     }
 
     [HttpPost("/hkrpg_global/account/ma-passport/api/appLoginByPassword")]
+    [HttpPost("/hkrpg_cn/account/ma-passport/api/appLoginByPassword")]
     public JsonResult Login([FromBody] NewLoginReqJson req)
     {
         return new NewUsernameLoginHandler().Handle(req.account!, req.password!);
     }
 
     [HttpPost("/hkrpg_global/mdk/shield/api/verify")]
+    [HttpPost("/hkrpg_cn/mdk/shield/api/verify")]
     public JsonResult Verify([FromBody] VerifyReqJson req)
     {
         return new TokenLoginHandler().Handle(req.uid!, req.token!);
     }
 
     [HttpPost("/hkrpg_global/combo/granter/login/v2/login")]
+    [HttpPost("/hkrpg_cn/combo/granter/login/v2/login")]
     public JsonResult LoginV2([FromBody] LoginV2ReqJson req)
     {
         return new ComboTokenGranterHandler().Handle(req.app_id, req.channel_id, req.data!, req.device!, req.sign!);
     }
 
     [HttpGet("/hkrpg_global/combo/granter/api/getConfig")]
+    [HttpGet("/hkrpg_cn/combo/granter/api/getConfig")]
     public ContentResult GetConfig()
     {
         return new ContentResult
@@ -96,6 +101,8 @@ public class DispatchRoutes
 
     [HttpGet("/hkrpg_global/combo/red_dot/list")]
     [HttpPost("/hkrpg_global/combo/red_dot/list")]
+    [HttpGet("/hkrpg_cn/combo/red_dot/list")]
+    [HttpPost("/hkrpg_cn/combo/red_dot/list")]
     public ContentResult RedDot()
     {
         return new ContentResult
@@ -105,6 +112,7 @@ public class DispatchRoutes
     }
 
     [HttpGet("/common/hkrpg_global/announcement/api/getAlertAnn")]
+    [HttpGet("/common/hkrpg_cn/announcement/api/getAlertAnn")]
     public ContentResult AlertAnn()
     {
         return new ContentResult
@@ -117,6 +125,7 @@ public class DispatchRoutes
 
 
     [HttpGet("/common/hkrpg_global/announcement/api/getAlertPic")]
+    [HttpGet("/common/hkrpg_cn/announcement/api/getAlertPic")]
     public ContentResult AlertPic()
     {
         return new ContentResult
@@ -128,6 +137,7 @@ public class DispatchRoutes
 
 
     [HttpGet("/hkrpg_global/mdk/shield/api/loadConfig")]
+    [HttpGet("/hkrpg_cn/mdk/shield/api/loadConfig")]
     public ContentResult LoadConfig()
     {
         return new ContentResult
@@ -142,6 +152,7 @@ public class DispatchRoutes
     // === EXTRA ===
 
     [HttpPost("/hkrpg_global/combo/granter/api/compareProtocolVersion")]
+    [HttpPost("/hkrpg_cn/combo/granter/api/compareProtocolVersion")]
     public ContentResult CompareProtocolVer()
     {
         return new ContentResult
@@ -152,6 +163,7 @@ public class DispatchRoutes
     }
 
     [HttpGet("/hkrpg_global/mdk/agreement/api/getAgreementInfos")]
+    [HttpGet("/hkrpg_cn/mdk/agreement/api/getAgreementInfos")]
     public ContentResult GetAgreementInfo()
     {
         return new ContentResult
