@@ -16,6 +16,7 @@ public class PassportRoutes : ControllerBase
     // === MA-CN-PASSPORT ===
 
     [HttpPost("/account/ma-cn-passport/api/appLoginByPassword")]
+    [HttpPost("/hkrpg_cn/account/ma-cn-passport/api/appLoginByPassword")]
     public JsonResult CnPassportLogin([FromBody] NewLoginReqJson req)
     {
         Logger.Info("Client request: ma-cn-passport login");
@@ -23,6 +24,7 @@ public class PassportRoutes : ControllerBase
     }
 
     [HttpPost("/account/ma-cn-passport/app/loginByThirdparty")]
+    [HttpPost("/hkrpg_cn/account/ma-cn-passport/app/loginByThirdparty")]
     public JsonResult CnLoginByThirdparty([FromBody] ThirdpartyLoginReqJson req)
     {
         Logger.Info("Client request: ma-cn-passport loginByThirdparty");
@@ -137,6 +139,60 @@ public class PassportRoutes : ControllerBase
 
     [HttpPost("/account/ma-cn-verifier/verifier/verifyThirdpartyBindMobileCaptcha")]
     public ContentResult VerifyBindMobileCaptcha()
+    {
+        return new ContentResult
+        {
+            Content = "{\"retcode\":0,\"message\":\"OK\",\"data\":{}}",
+            ContentType = "application/json"
+        };
+    }
+
+    // === DEVICE ===
+
+    [HttpPost("/account/device/api/grant")]
+    public ContentResult DeviceGrant()
+    {
+        return new ContentResult
+        {
+            Content = "{\"retcode\":0,\"message\":\"OK\",\"data\":{\"game_token\":\"dummy_token\",\"login_ticket\":\"\"}}",
+            ContentType = "application/json"
+        };
+    }
+
+    [HttpPost("/account/device/api/preGrantByGame")]
+    public ContentResult PreGrantByGame()
+    {
+        return new ContentResult
+        {
+            Content = "{\"retcode\":0,\"message\":\"OK\",\"data\":{}}",
+            ContentType = "application/json"
+        };
+    }
+
+    [HttpPost("/account/device/api/preGrantByTicket")]
+    public ContentResult PreGrantByTicket()
+    {
+        return new ContentResult
+        {
+            Content = "{\"retcode\":0,\"message\":\"OK\",\"data\":{}}",
+            ContentType = "application/json"
+        };
+    }
+
+    // === ACCOUNT AUTH ===
+
+    [HttpPost("/account/auth/api/bindRealname")]
+    public ContentResult BindRealname()
+    {
+        return new ContentResult
+        {
+            Content = "{\"retcode\":0,\"message\":\"OK\",\"data\":{}}",
+            ContentType = "application/json"
+        };
+    }
+
+    [HttpPost("/account/auth/api/bindMobile")]
+    public ContentResult BindMobile()
     {
         return new ContentResult
         {

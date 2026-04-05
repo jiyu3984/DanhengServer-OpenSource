@@ -145,6 +145,46 @@ public class DispatchRoutes : ControllerBase
         };
     }
 
+    [HttpPost("/hkrpg_global/mdk/shield/api/checkAccount")]
+    [HttpPost("/hkrpg_cn/mdk/shield/api/checkAccount")]
+    public ContentResult CheckAccount()
+    {
+        return new ContentResult
+        {
+            Content = "{\"retcode\":0,\"message\":\"OK\",\"data\":{}}",
+            ContentType = "application/json"
+        };
+    }
+
+    [HttpPost("/hkrpg_global/mdk/shield/api/loginCaptcha")]
+    [HttpPost("/hkrpg_cn/mdk/shield/api/loginCaptcha")]
+    public ContentResult LoginCaptcha()
+    {
+        return new ContentResult
+        {
+            Content = "{\"retcode\":0,\"message\":\"OK\",\"data\":{\"action\":\"ACTION_NONE\",\"geetest\":null}}",
+            ContentType = "application/json"
+        };
+    }
+
+    [HttpPost("/hkrpg_global/mdk/shield/api/loginMobile")]
+    [HttpPost("/hkrpg_cn/mdk/shield/api/loginMobile")]
+    public JsonResult LoginMobile([FromBody] LoginReqJson req)
+    {
+        return new UsernameLoginHandler().Handle(req.account!, req.password ?? "", req.is_crypto);
+    }
+
+    [HttpPost("/hkrpg_global/combo/granter/api/compareUgcProtocolVersion")]
+    [HttpPost("/hkrpg_cn/combo/granter/api/compareUgcProtocolVersion")]
+    public ContentResult CompareUgcProtocolVer()
+    {
+        return new ContentResult
+        {
+            Content = "{\"retcode\":0,\"message\":\"OK\",\"data\":{\"modified\":false,\"protocol\":null}}",
+            ContentType = "application/json"
+        };
+    }
+
     [HttpGet("/hkrpg_global/combo/granter/api/getConfig")]
     [HttpGet("/hkrpg_cn/combo/granter/api/getConfig")]
     public ContentResult GetConfig()
