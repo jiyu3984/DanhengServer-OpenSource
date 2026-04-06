@@ -329,7 +329,7 @@ public class DispatchRoutes : ControllerBase
     {
         return new ContentResult
         {
-            Content = "{\"version\":1}",
+            Content = "{}",
             ContentType = "application/json"
         };
     }
