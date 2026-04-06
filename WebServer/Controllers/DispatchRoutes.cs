@@ -321,4 +321,49 @@ public class DispatchRoutes : ControllerBase
             ContentType = "application/json"
         };
     }
+
+    // === MI18N / FONT / MISC ===
+
+    [HttpGet("/admin/mi18n/{**path}")]
+    public ContentResult Mi18n()
+    {
+        return new ContentResult
+        {
+            Content = "{\"version\":1}",
+            ContentType = "application/json"
+        };
+    }
+
+    [HttpGet("/hkrpg_global/combo/granter/api/getFont")]
+    [HttpGet("/hkrpg_cn/combo/granter/api/getFont")]
+    public ContentResult GetFont()
+    {
+        return new ContentResult
+        {
+            Content = "{\"retcode\":0,\"message\":\"OK\",\"data\":{}}",
+            ContentType = "application/json"
+        };
+    }
+
+    [HttpGet("/combo/box/api/config/porte-cn/porte")]
+    [HttpGet("/combo/box/api/config/porte-global/porte")]
+    [HttpGet("/combo/box/api/config/sdk/drmSwitch")]
+    public ContentResult ComboBoxConfigExtra()
+    {
+        return new ContentResult
+        {
+            Content = "{\"retcode\":0,\"message\":\"OK\",\"data\":{\"vals\":{}}}",
+            ContentType = "application/json"
+        };
+    }
+
+    [HttpGet("/_ts")]
+    public ContentResult Timestamp()
+    {
+        return new ContentResult
+        {
+            Content = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(),
+            ContentType = "text/plain"
+        };
+    }
 }
