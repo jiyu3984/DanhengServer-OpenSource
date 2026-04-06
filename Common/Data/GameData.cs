@@ -54,7 +54,7 @@ public static class GameData
     public static Dictionary<uint, AvatarRelicRecommendExcel> AvatarRelicRecommendData { get; private set; } = [];
     public static Dictionary<int, AvatarGlobalBuffConfigExcel> AvatarGlobalBuffConfigData { get; private set; } = [];
 
-    public static Dictionary<int, AdventureAbilityConfigListInfo> AdventureAbilityConfigListData { get; private set; } =
+    public static ConcurrentDictionary<int, AdventureAbilityConfigListInfo> AdventureAbilityConfigListData { get; private set; } =
         [];
 
     public static Dictionary<int, AvatarPromotionConfigExcel> AvatarPromotionConfigData { get; private set; } = [];

@@ -81,5 +81,18 @@ public class Startup
         app.UseAuthorization();
 
         app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+        // Log unhandled 404s for debugging missing endpoints
+        app.Run(async context =>
+        {
+            if (context.Response.StatusCode == 404 || !context.Response.HasStarted)
+            {
+                var logger = new Logger("DispatchServer");
+                logger.Warn($"Unhandled route: {context.Request.Method} {context.Request.Path}");
+                context.Response.StatusCode = 404;
+                context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync("{\"retcode\":-1,\"message\":\"Not Found\"}");
+            }
+        });
     }
 }

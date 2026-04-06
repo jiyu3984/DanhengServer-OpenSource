@@ -9,6 +9,7 @@ public class LogServerRoutes
     [HttpPost("/sdk/dataUpload")]
     [HttpPost("/crashdump/dataUpload")]
     [HttpPost("/apm/dataUpload")]
+    [HttpPost("/loginsdk/dataUpload")]
     public ContentResult LogUpload()
     {
         return new ContentResult { Content = "{\"code\":0}", ContentType = "application/json" };

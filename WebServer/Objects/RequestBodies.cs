@@ -27,3 +27,11 @@ public class LoginV2ReqJson
     public string? device { get; set; }
     public string? sign { get; set; }
 }
+
+public class ThirdpartyLoginReqJson
+{
+    public string? thirdparty { get; set; }
+    public string? token { get; set; }
+    public string? uid { get; set; }
+    public string? account { get; set; }
+}
